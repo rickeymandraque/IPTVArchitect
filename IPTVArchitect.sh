@@ -10,7 +10,7 @@ fi
 scripts=($(ls ./Scripts/*.sh 2>/dev/null))
 
 # Vérification s'il y a des scripts dans le dossier
-if [ ${#scripts[@]} -eq 0 ]; alors
+if [ ${#scripts[@]} -eq 0 ]; then
   echo "Aucun script trouvé dans le dossier ./Scripts."
   exit 1
 fi
