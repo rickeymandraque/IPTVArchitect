@@ -1,5 +1,38 @@
 #!/bin/bash
 
+#fonction de detection de l'OS, sera externalisé plus tard
+# Fonction pour détecter le système d'exploitation
+function detect_os() {
+    if [[ "$(uname -a)" == *"Android"* ]]; then
+        # Vérification des caractéristiques spécifiques à Android TV
+        # getprop ro.build.version.release < autre piste
+        # if pm list packages | grep -q "com.google.android.tv"; then < +1
+        # getprop ro.build.version.sdk < et encore !
+        if [[ -f /system/build.prop && $(grep -i 'tv' /system/build.prop) ]]; then
+            echo "OS détecté : Android TV"
+            os="Android TV"
+        else
+            echo "OS détecté : Android"
+            os="Android"
+        fi
+    elif [[ "$(uname -a)" == *"Linux"* ]]; then
+        if [[ -f /etc/os-release ]]; then
+            # Lire le nom de la distribution Linux à partir de /etc/os-release
+            . /etc/os-release
+            os=$NAME
+        else
+            os="Linux (distribution inconnue)"
+        fi
+        echo "OS détecté : $os"
+    else
+        os="Inconnu"
+        echo "OS détecté : $os"
+    fi
+}
+
+# Appeler la fonction de détection de l'OS
+detect_os
+
 # Vérification si le dossier ./Scripts existe
 if [ ! -d "./Scripts" ]; then
   echo "Le dossier ./Scripts n'existe pas."
