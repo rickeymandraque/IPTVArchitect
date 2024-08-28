@@ -31,9 +31,10 @@ J'étais un peu fatigué de devoir courir vers différentes sources pour récup�
 
 # Qu'est-ce qui fonctionne actuellement ?
 
-En date du 26/08/2024 voilà les fonctionnalités :
+En date du 28/08/2024 voilà les fonctionnalités :
 - ajouts du scraper pour Koolto.
 - Ajout de fonctions de base.
+- detection de l'OS.
 
 # W.I.P.
 Ce script est pensé pour les utilisations suivantes :
